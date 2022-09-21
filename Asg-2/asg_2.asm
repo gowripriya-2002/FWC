@@ -1,4 +1,3 @@
-;logical AND, OR and XOR operations
 ;output displayed using 7447 IC
 
 .include "/home/student/m328Pdef.inc"
