@@ -7,8 +7,6 @@ DDRB = 0b00001111; //8&9&10&11 as inputs
 PORTB= 0b11110000;
 DDRD = 0b00000100; //2as output
 
-//DDRB |= (1<<DDB5);
-
 
 while(1)
    {
