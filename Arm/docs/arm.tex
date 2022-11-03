@@ -1,0 +1,162 @@
+\def\mytitle{Arm  Assignment}
+\def\myauthor{A.Gowri Priya}
+\def\contact{gowripriyaappayyagari@gmail.com}
+\def\mymodule{Future Wireless Communication (FWC)}
+\documentclass[10pt, a4paper]{article}
+\usepackage[a4paper,outer=1.5cm,inner=1.5cm,top=1.75cm,bottom=1.5cm]{geometry}
+\twocolumn
+\usepackage{setspace}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage[colorlinks,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
+\usepackage[parfill]{parskip}
+\usepackage{lmodern}
+\usepackage{tikz}
+	\usepackage{physics}
+%\documentclass[tikz, border=2mm]{standalone}
+\usepackage{karnaugh-map}
+\usepackage{tabularx}
+\usetikzlibrary{calc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{watermark}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{titlesec}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\titlespacing{\subsection}{1pt}{\parskip}{3pt}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+\titlespacing{\paragraph}{0pt}{\parskip}{\parskip}
+
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\let\vec\mathbf
+\lstset{
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+\title{\mytitle}
+\author{\myauthor\hspace{1em}\\\contact\\FWC22013\hspace{6.5em}IITH\hspace{0.5em}\mymodule\hspace{6em}ASSIGNMENT}
+\date{}
+\begin{document}
+	\maketitle
+\section{Problem}
+Reduce the following Boolean Expression to its simplest form using K-Map :
+E(U,V,Z,W)=   (2 , 3 , 6 , 8 , 9 , 10 , 11 , 12 , 13 )
+
+
+\section{Components}
+
+\begin{center}
+    \setlength{\arrayrulewidth}{0.1mm}
+	\setlength{\tabcolsep}{12pt}
+	\renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|c|c|}
+    \hline 
+    \textbf{S.No} & \textbf{Component} & \textbf{Number}\\ \hline
+	1. & Vaman Board & 1 \\
+	2. & Bread Board & 1 \\
+	3. & Jumer Wires(F-M) & 10 \\
+	4. & LED & 1 \\
+	5. & Resistor(150 ohm) & 1 \\ \hline   
+   \end{tabular}
+\end{center}
+
+\section{K-Map}
+    \paragraph{}
+ From the given data the minterms are\\ 2,3,6,8,9,10,11,12,13.
+     
+\begin{karnaugh-map}[4][4][1][][]
+    \maxterms{0,1,4,5,7,14,15}
+    \minterms{2,3,6,8,9,10,11,12,13}
+
+    % note: posistion for start of \draw is (0, Y) where Y is
+    % the Y size(number of cells high) in this case Y=2
+    \draw[color=black, ultra thin] (0, 4) --
+    node [pos=0.7, above right, anchor=south west] {$XW$} % Y label
+    node [pos=0.7, below left, anchor=north east] {$ZY$} % X label
+    ++(135:1);
+        
+\end{karnaugh-map}
+
+The minimized expression is
+    E=(UZ'+V'Z+U'ZW')
+
+   
+    \begin{karnaugh-map}[4][4][1][][]
+         \maxterms{0,1,4,5,7,14,15}
+         \minterms{2,3,6,8,9,10,11,12,13}
+        \implicantedge{3}{2}{11}{10}
+        \implicantedge{8}{9}{12}{13}
+        \implicant{2}{6}
+    \draw[color=black, ultra thin] (0, 4) --
+    node [pos=0.7, above right, anchor=south west] {$XW$} % Y label
+    node [pos=0.7, below left, anchor=north east] {$ZY$} % X label
+    ++(135:1);
+\end{karnaugh-map}
+
+\section{Truth Table}
+
+\begin{center}
+   \begin{tabularx}{0.5\textwidth} {
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X | }
+\hline
+ U& V & Z & W & E \\
+\hline
+0 & 0 & 0 & 0 & 0\\ 
+\hline
+0 & 0 & 0 & 1& 0 \\
+\hline
+0 & 0 & 1 & 0 & 1\\
+\hline
+0 & 0 & 1 & 1 & 1 \\
+\hline
+0 & 1 & 0 & 0 & 0 \\ 
+\hline
+0 & 1 & 0 & 1 & 0 \\
+\hline
+0 & 1 & 1 & 0 & 1 \\
+\hline
+0 & 1 & 1& 1 & 0 \\
+\hline
+1 & 0 & 0 & 0 & 1\\ 
+\hline
+1 & 0 & 0 & 1& 1\\
+\hline
+1 & 0 & 1 & 0 & 1\\
+\hline
+1 & 0 & 1 & 1 & 1 \\
+\hline
+1 & 1 & 0 & 0 & 1 \\ 
+\hline
+1 & 1 & 0 & 1 & 1 \\
+\hline
+1 & 1 & 1 & 0 & 0 \\
+\hline
+1 & 1 & 1& 1 & 0 \\
+\hline
+\end{tabularx}
+Truth Table
+\end{center}
+
+\section{Procedure}
+\raggedright 1.After executing the following code using make, a binary file is generated with .bin extension in the output directory.  \\  2.Now from the termux, using scp protocol, send the generated bin file to the laptop. \\ \vspace{2mm}
+\raggedright 3.There we are supposed to flash the .bin file into the ARM through the terminal.\\ \vspace{2mm}
+\raggedright 4.After flashing, reset the Vaman board.\\ \vspace{2mm}
+\raggedright 5.Make connections between the LED and ARM board using jumper wires. \\ \vspace{2mm}
+\raggedright 6.Now check the output with reference to the truth table present above.
+\section{Execution}
+*Verify the above truth table by using the minimized expression in the following code.
+\framebox{
+\url{https://github.com/gowripriya-2002/FWC/blob/main/Arm/Codes/src/main.c}}
+\bibliographystyle{ieeetr}
+\section{Conclusion}
+Hence the  given boolean expression is minimized and  verified  it's functionality by using ARM.
+\end{document}
