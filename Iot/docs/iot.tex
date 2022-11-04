@@ -1,0 +1,292 @@
+\def\mytitle{IOT Assignment}
+\def\myauthor{A.Gowri Priya}
+\def\contact{gowripriyaappayyagari@gmail.com}
+\def\mymodule{Future Wireless Communication (FWC)}
+\documentclass[10pt, a4paper]{article}
+\usepackage[a4paper,outer=1.5cm,inner=1.5cm,top=1.75cm,bottom=1.5cm]{geometry}
+\twocolumn
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage[colorlinks,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
+\usepackage[parfill]{parskip}
+\usepackage{lmodern}
+\usepackage{tikz}
+%\documentclass[tikz, border=2mm]{standalone}
+\usepackage{karnaugh-map}
+%\documentclass{article}
+\usepackage{tabularx}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{watermark}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{titlesec}
+       \usepackage[latin1]{inputenc}
+       \usepackage{color}
+       \usepackage{array}
+       \usepackage{longtable}
+       \usepackage{calc}
+       \usepackage{multirow}
+       \usepackage{hhline}
+       \usepackage{ifthen}
+
+\titlespacing{\subsection}{1pt}{\parskip}{3pt}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+\titlespacing{\paragraph}{0pt}{\parskip}{\parskip}
+\newcommand{\figuremacro}[5]{
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#5\columnwidth]{#2}
+        \caption[#3]{\textbf{#3}#4}
+        \label{fig:#2}
+    \end{figure}
+}
+
+\lstset{
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+
+\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax}
+\ifundefined{inputGnumericTable}
+\def\gnumericTableEnd{\end{document}}
+\else
+   \def\gnumericTableEnd{}
+\fi
+\providecommand{\gnumericmathit}[1]{#1} 
+\providecommand{\gnumericPB}[1]%
+{\let\gnumericTemp=\\#1\let\\=\gnumericTemp\hspace{0pt}}
+ \ifundefined{gnumericTableWidthDefined}
+        \newlength{\gnumericTableWidth}
+        \newlength{\gnumericTableWidthComplete}
+        \newlength{\gnumericMultiRowLength}
+        \global\def\gnumericTableWidthDefined{}
+ \fi
+ \ifthenelse{\isundefined{\languageshorthands}}{}{\languageshorthands{english}}
+\providecommand\gnumbox{\makebox[0pt]}
+\setlength{\bigstrutjot}{\jot}
+\setlength{\extrarowheight}{\doublerulesep}
+\setlongtables
+
+\setlength\gnumericTableWidth{%
+	98pt+%
+	118pt+%
+0pt}
+\def\gumericNumCols{2}
+\setlength\gnumericTableWidthComplete{\gnumericTableWidth+%
+         \tabcolsep*\gumericNumCols*2+\arrayrulewidth*\gumericNumCols}
+\ifthenelse{\lengthtest{\gnumericTableWidthComplete > \linewidth}}%
+         {\def\gnumericScale{1*\ratio{\linewidth-%
+                        \tabcolsep*\gumericNumCols*2-%
+                        \arrayrulewidth*\gumericNumCols}%
+{\gnumericTableWidth}}}%
+{\def\gnumericScale{1}}
+
+\ifthenelse{\isundefined{\gnumericColA}}{\newlength{\gnumericColA}}{}\settowidth{\gnumericColA}{\begin{tabular}{@{}p{98pt*\gnumericScale}@{}}x\end{tabular}}
+\ifthenelse{\isundefined{\gnumericColB}}{\newlength{\gnumericColB}}{}\settowidth{\gnumericColB}{\begin{tabular}{@{}p{118pt*\gnumericScale}@{}}x\end{tabular}}
+\title{\mytitle}
+\author{\myauthor\hspace{1em}\\\contact\\FWC22013\hspace{6.5em}IITH\hspace{0.5em}\mymodule\hspace{6em}ASSIGNMENT}
+\begin{document}
+	\maketitle
+	\section{Problem}
+ Reduce the following Boolean Expression to its simplest form using K-Map :
+E(U,V,Z,W)=   (2 , 3 , 6 , 8 , 9 , 10 , 11 , 12 , 13 )
+	\section{Components}
+  \begin{tabularx}{0.48\textwidth} { 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X | }
+\hline
+ \textbf{Components}&  \textbf{Quantity}\\
+\hline
+Vaman Board & 1 \\  
+\hline
+JumperWires& 20 \\ 
+\hline
+Breadboard  & 1 \\
+\hline
+Seven segment display  & 1 \\
+\hline
+IC 7447  & 1 \\
+\hline
+USB-C Cable  & 1 \\
+\hline
+USB-UART  & 1 \\
+\hline
+\end{tabularx}
+\section{The steps for implementation:}
+\begin{enumerate}
+\item Connect the USB-UART pins to the Vaman ESP32 pins according to Table 
+
+\begin{tabular}[c]{%
+	b{\gnumericColA}%
+	b{\gnumericColB}%
+	}
+\hhline{|-|-}
+	 \multicolumn{1}{|p{\gnumericColA}|}%
+	{\gnumericPB{\centering}\gnumbox{{\color[rgb]{0.79,0.13,0.12} VAMAN LC PINS}}}
+	&\multicolumn{1}{p{\gnumericColB}|}%
+	{\gnumericPB{\centering}\gnumbox{{\color[rgb]{0.79,0.13,0.12} UART PINS}}}
+\\
+\hhline{|--|}
+	 \multicolumn{1}{|p{\gnumericColA}|}%
+	{\gnumericPB{\centering}\gnumbox{GND}}
+	&\multicolumn{1}{p{\gnumericColB}|}%
+	{\gnumericPB{\centering}\gnumbox{GND}}
+\\
+\hhline{|--|}
+	 \multicolumn{1}{|p{\gnumericColA}|}%
+	{\gnumericPB{\centering}\gnumbox{ENB}}
+	&\multicolumn{1}{p{\gnumericColB}|}%
+	{\gnumericPB{\centering}\gnumbox{ENB}}
+\\
+\hhline{|--|}
+	 \multicolumn{1}{|p{\gnumericColA}|}%
+	{\gnumericPB{\centering}\gnumbox{TXD0}}
+	&\multicolumn{1}{p{\gnumericColB}|}%
+	{\gnumericPB{\centering}\gnumbox{RXD}}
+\\
+\hhline{|--|}
+	 \multicolumn{1}{|p{\gnumericColA}|}%
+	{\gnumericPB{\centering}\gnumbox{RXD0}}
+	&\multicolumn{1}{p{\gnumericColB}|}%
+	{\gnumericPB{\centering}\gnumbox{TXD}}
+\\
+\hhline{|--|}
+	 \multicolumn{1}{|p{\gnumericColA}|}%
+	{\gnumericPB{\centering}\gnumbox{0}}
+	&\multicolumn{1}{p{\gnumericColB}|}%
+	{\gnumericPB{\centering}\gnumbox{IO0}}
+\\
+\hhline{|--|}
+	 \multicolumn{1}{|p{\gnumericColA}|}%
+	{\gnumericPB{\centering}\gnumbox{5V}}
+	&\multicolumn{1}{p{\gnumericColB}|}%
+	{\gnumericPB{\centering}\gnumbox{5V}}
+\\
+\hhline{|-|-|}
+\end{tabular}
+ \item Flash the following setup code through USB-UART using laptop
+\begin{center}
+\fbox{\parbox{8cm}{\url{https://github.com/gowripriya-2002/FWC/blob/main/iot/codes/setup/src/main.cpp}}}
+\end{center}
+\begin{center}
+\end{center}
+\begin{lstlisting}
+svn co https://github.com/gowripriya-2002/FWC/trunk/Iot/codes/setup
+cd  setup
+pio run
+pio run -t upload
+\end{lstlisting}
+
+after entering your wifi username and password (in quotes below)
+\begin{lstlisting}
+#define STASSID "..." // Add your network credentials
+#define STAPSK  "..."
+\end{lstlisting}
+in src/main.cpp file
+\item You can notice that vaman will be connnected to the network credentials provided above.Connect your laptop to the same network ,You should be able to find the ip address of your vaman-esp on laptop using 
+\begin{lstlisting}
+ifconfig
+nmap -sn 192.168.93.1/24
+\end{lstlisting}
+where your computer's ip address is the output of ifconfig and given by 192.168.6.x
+\item Login to termux-ubuntu on the android device and execute the following commands:
+\begin{lstlisting}
+proot-distro login debian
+cd  /data/data/com.termux/files/home/
+mkdir iot
+svn co https://github.com/gowripriya-2002/FWC/trunk/Iot/codes/ota
+cd codes
+\end{lstlisting}
+\item Assuming that the username is A.G.P.R and password is gangagowri@123, Make connections to the seven-segment display and IC 7447 and flash the following code wirelessly
+\begin{center}
+\fbox{\parbox{8cm}{\url{https://github.com/gowripriya-2002/FWC/blob/main/Iot/codes/ota/src/main.cpp}}}
+\end{center}
+through 
+\begin{lstlisting}
+pio run 
+pio run -t nobuild -t upload --upload-port ip_addres_of_esp
+\end{lstlisting}
+where you may replace the above ip address with the ip address of your vaman-esp.
+\section{K-Map}
+The minimized expression is
+    E=(UZ'+V'Z+U'ZW')
+
+   
+    \begin{karnaugh-map}[4][4][1][][]
+         \maxterms{0,1,4,5,7,14,15}
+         \minterms{2,3,6,8,9,10,11,12,13}
+        \implicantedge{3}{2}{11}{10}
+        \implicantedge{8}{9}{12}{13}
+        \implicant{2}{6}
+    \draw[color=black, ultra thin] (0, 4) --
+    node [pos=0.7, above right, anchor=south west] {$XW$} % Y label
+    node [pos=0.7, below left, anchor=north east] {$ZY$} % X label
+    ++(135:1);
+\end{karnaugh-map}
+
+\section{Truth Table}
+
+\begin{center}
+   \begin{tabularx}{0.5\textwidth} {
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X | }
+\hline
+ U& V & Z & W & E \\
+\hline
+0 & 0 & 0 & 0 & 0\\ 
+\hline
+0 & 0 & 0 & 1& 0 \\
+\hline
+0 & 0 & 1 & 0 & 1\\
+\hline
+0 & 0 & 1 & 1 & 1 \\
+\hline
+0 & 1 & 0 & 0 & 0 \\ 
+\hline
+0 & 1 & 0 & 1 & 0 \\
+\hline
+0 & 1 & 1 & 0 & 1 \\
+\hline
+0 & 1 & 1& 1 & 0 \\
+\hline
+1 & 0 & 0 & 0 & 1\\ 
+\hline
+1 & 0 & 0 & 1& 1\\
+\hline
+1 & 0 & 1 & 0 & 1\\
+\hline
+1 & 0 & 1 & 1 & 1 \\
+\hline
+1 & 1 & 0 & 0 & 1 \\ 
+\hline
+1 & 1 & 0 & 1 & 1 \\
+\hline
+1 & 1 & 1 & 0 & 0 \\
+\hline
+1 & 1 & 1& 1 & 0 \\
+\hline
+\end{tabularx}
+Truth Table\\
+Verify the above truth table by changing inputs and observing the output.
+\end{center}
+\section{Conclusion}
+Hence the  given boolean expression is minimized and  verified  it's functionality by using IOT.
+\end{enumerate}
+\end{document}
+
+
+
